@@ -64,6 +64,9 @@ func Launch(cmd []string, wd string) (*Process, error) {
 	// argv array must be null terminated.
 	argvSlice = append(argvSlice, nil)
 
+	pid := C.fork_exec2(argv0, &argvSlice[0], C.int(len(argvSlice)), C.CString(wd))
+	return Attach(int(pid))
+/*
 	dbp := New(0)
 	var pid int
 	dbp.execPtraceFunc(func() {
@@ -87,6 +90,7 @@ func Launch(cmd []string, wd string) (*Process, error) {
 	}
 	err = dbp.Continue()
 	return dbp, err
+	*/
 }
 
 // Attach to an existing process with the given PID.

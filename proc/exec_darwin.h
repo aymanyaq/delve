@@ -8,3 +8,6 @@
 
 int
 fork_exec(char *, char **, int, char *, task_t*, mach_port_t*, mach_port_t*, mach_port_t*);
+
+int
+fork_exec2(char *, char **, int, char *);
